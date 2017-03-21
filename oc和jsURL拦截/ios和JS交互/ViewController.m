@@ -42,8 +42,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    
-    //'http://www.testwebpage/?funcName=printInfo:&&info=helloword'
+
     // 1.获取加载网页的url
     NSURL *url = request.URL;
     if (url == nil) {

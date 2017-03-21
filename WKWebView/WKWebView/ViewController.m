@@ -30,7 +30,7 @@
     
     WKPreferences *preferences = [WKPreferences new];
     preferences.javaScriptCanOpenWindowsAutomatically = YES;
-    preferences.minimumFontSize = 30.0;
+    preferences.minimumFontSize = 40.0;
     configuration.preferences = preferences;
     
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];

@@ -14,17 +14,17 @@
                 window.webkit.messageHandlers.Location.postMessage(null);
             }
             
-            function setLocation(location) {
-                asyncAlert(location);
-                document.getElementById("returnValue").value = location;
-            }
-            
             function colorClick() {
                 window.webkit.messageHandlers.Color.postMessage([67,205,128,0.5]);
             }
             
             function payClick() {
                 window.webkit.messageHandlers.Pay.postMessage({order_no:'201511120981234',channel:'wx',amount:1,subject:'粉色外套'});
+            }
+            
+            function setLocation(location) {
+                asyncAlert(location);
+                document.getElementById("returnValue").value = location;
             }
             
             function payResult(str) {

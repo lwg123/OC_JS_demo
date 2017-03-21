@@ -137,6 +137,12 @@
     
 #pragma mark - WKScriptMessageHandler
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    
+    /*
+     WKScriptMessage有两个关键属性name 和 body。
+     因为我们给每一个OC 方法取了一个name，那么我们就可以根据name 来区分执行不同的方法。body 中存着JS 要给OC 传的参数。
+     */
+    
     //message.body  --  Allowed types are NSNumber, NSString, NSDate, NSArray,NSDictionary, and NSNull.
     if ([message.name isEqualToString:@"ScanAction"]) {
         NSLog(@"扫一扫");
