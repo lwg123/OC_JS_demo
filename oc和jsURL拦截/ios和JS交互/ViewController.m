@@ -40,7 +40,7 @@
     [SVProgressHUD dismiss];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     
     //'http://www.testwebpage/?funcName=printInfo:&&info=helloword'
@@ -60,6 +60,10 @@
         return YES;
     }
     
+//    if (![url.scheme isEqualToString:@"rrcc"]) {
+//        return YES;
+//    }
+    
     // 4.将特殊字段截取出来,分割字符串得到参数数据
     // funcName=printInfo:&&info=18513239626
     NSString *linkStr = [urlStr componentsSeparatedByString:@"?"][1];
@@ -74,6 +78,7 @@
     //5. 调起iOS原生方法
     SEL ocFunc = NSSelectorFromString(funcName);
     if ([self respondsToSelector:ocFunc]) {
+        
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         
@@ -93,7 +98,7 @@
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确定要拨打电话？\n%@",_info] preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击确定");
+    
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
         
     }]];

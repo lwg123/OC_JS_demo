@@ -21,22 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfK-kV-5kG">
-                                <rect key="frame" x="77" y="352" width="220" height="50"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="K8J-ww-4fD"/>
-                                    <constraint firstAttribute="width" constant="220" id="b73-Tb-NBE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="WKWebView拦截URL">
-                                    <color key="titleColor" red="1" green="0.57850406409999999" blue="0.091357635660000006" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="wkBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IFl-11-9F0"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7U-mu-aqn">
                                 <rect key="frame" x="77" y="214" width="220" height="50"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,8 +42,6 @@
                         <constraints>
                             <constraint firstItem="t7U-mu-aqn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="08j-Tb-N9J"/>
                             <constraint firstItem="t7U-mu-aqn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="K3p-T8-tVF"/>
-                            <constraint firstItem="bfK-kV-5kG" firstAttribute="centerX" secondItem="t7U-mu-aqn" secondAttribute="centerX" id="PL9-5Y-cga"/>
-                            <constraint firstItem="bfK-kV-5kG" firstAttribute="top" secondItem="t7U-mu-aqn" secondAttribute="bottom" constant="88" id="m1W-ht-pv6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bfW-ZS-Vjf"/>
