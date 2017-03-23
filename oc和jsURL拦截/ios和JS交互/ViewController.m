@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <SVProgressHUD.h>
+#import "CHNative.h"
 
 @interface ViewController ()<UIWebViewDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -15,6 +16,9 @@
 @end
 
 @implementation ViewController
+{
+    CHNative *_native;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +29,8 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:htmlPath]];
    [self.webView loadRequest:request];
+    
+    _native = [[CHNative alloc] init];
 }
 
 #pragma mark UIWebViewDelegate
@@ -63,12 +69,7 @@
         return YES;
     }
     
-//    if (![url.scheme isEqualToString:@"rrcc"]) {
-//        return YES;
-//    }
-    
     // 4.将特殊字段截取出来,分割字符串得到参数数据
-    // funcName=printInfo:&&info=18513239626
     NSString *linkStr = [urlStr componentsSeparatedByString:@"?"][1];
     NSLog(@"%@",linkStr);
     
@@ -77,23 +78,38 @@
     NSString *funcName = [params[0] componentsSeparatedByString:@"="][1];
     //取出第二个参数：信息字符串 18513239626
     NSString *info = [params[1] componentsSeparatedByString:@"="][1];
+    NSMutableDictionary *dicParam = [NSMutableDictionary dictionary];
+    [dicParam setValue:info forKey:@"info"];
     
     //5. 调起iOS原生方法
-    SEL ocFunc = NSSelectorFromString(funcName);
-    if ([self respondsToSelector:ocFunc]) {
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        
-        [self performSelector:ocFunc withObject:info];
-#pragma clang diagnostic pop
+    SEL selector = NSSelectorFromString(funcName);
+    
+    NSMethodSignature *methodSig = [_native methodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+    invocation.selector = selector;
+    invocation.target = _native;
+    int i = 0;
+    if (dicParam) {
+        [invocation setArgument:&dicParam atIndex:i + 2];
     }
+    [invocation invoke];
+
+    
+//    if ([self respondsToSelector:selector]) {
+//        
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        
+//        [self performSelector:selector withObject:info];
+//#pragma clang diagnostic pop
+//    }
     
     //返回NO是为了不再执行点击原链接的跳转
     return NO;
 
 }
 
+// 本地调用
 - (void)printInfo:(NSObject *)obj {
     _info = [NSString stringWithFormat:@"%@",obj];
     

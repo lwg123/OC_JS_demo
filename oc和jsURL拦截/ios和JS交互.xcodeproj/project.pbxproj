@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40A96F998E375C44E5556658 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9AD38A3A65E15C79B2BB7B /* libPods.a */; };
+		D13E13881E83C5600078863B /* CHNative.m in Sources */ = {isa = PBXBuildFile; fileRef = D13E13871E83C5600078863B /* CHNative.m */; };
 		D199C56F1E6E7C260062AC1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D199C56E1E6E7C260062AC1D /* main.m */; };
 		D199C5721E6E7C260062AC1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D199C5711E6E7C260062AC1D /* AppDelegate.m */; };
 		D199C5751E6E7C260062AC1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D199C5741E6E7C260062AC1D /* ViewController.m */; };
@@ -19,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		1D9AD38A3A65E15C79B2BB7B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D13E13861E83C5600078863B /* CHNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHNative.h; sourceTree = "<group>"; };
+		D13E13871E83C5600078863B /* CHNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHNative.m; sourceTree = "<group>"; };
 		D199C56A1E6E7C260062AC1D /* ios和JS交互.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios和JS交互.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D199C56E1E6E7C260062AC1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D199C5701E6E7C260062AC1D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 			children = (
 				D199C5701E6E7C260062AC1D /* AppDelegate.h */,
 				D199C5711E6E7C260062AC1D /* AppDelegate.m */,
+				D13E13861E83C5600078863B /* CHNative.h */,
+				D13E13871E83C5600078863B /* CHNative.m */,
 				D199C5731E6E7C260062AC1D /* ViewController.h */,
 				D199C5741E6E7C260062AC1D /* ViewController.m */,
 				D199C5841E6E85000062AC1D /* testWebPage.html */,
@@ -232,6 +237,7 @@
 				D199C5751E6E7C260062AC1D /* ViewController.m in Sources */,
 				D199C5721E6E7C260062AC1D /* AppDelegate.m in Sources */,
 				D199C56F1E6E7C260062AC1D /* main.m in Sources */,
+				D13E13881E83C5600078863B /* CHNative.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
