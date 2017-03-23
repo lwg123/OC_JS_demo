@@ -21,11 +21,6 @@
    
 }
 
-- (IBAction)wkBtn:(id)sender {
-    
-//    WKWebViewController *WKwebVC = [[WKWebViewController alloc] init];
-//    [self.navigationController pushViewController:WKwebVC animated:YES];
-}
 
 - (IBAction)UIBtn:(id)sender {
     
