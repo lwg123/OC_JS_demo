@@ -74,8 +74,12 @@
     NSString *url = [tempDic objectForKey:@"url"];
     // 在这里执行分享的操作
     
-    // 将分享结果返回给js
-    NSString *jsStr = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
+    // 将分享结果返回给js 下面两种方法都可以实现
+    
+//    NSString *jsStr1 = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
+    
+    NSString *jsStr = [NSString stringWithFormat:@"var content='%@'+','+'%@'+','+'%@';asyncAlert(content);document.getElementById('returnValue').value = content;",title,content,url];
+    
     [self.webView stringByEvaluatingJavaScriptFromString:jsStr];
 }
 

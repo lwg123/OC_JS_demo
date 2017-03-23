@@ -36,8 +36,8 @@
     [SVProgressHUD dismiss];
     
     // 修改底部文字颜色
-    NSString *str = @"document.getElementById('test').style.color='red';";
-    [webView stringByEvaluatingJavaScriptFromString:str];
+    NSString *jsStr = @"document.getElementById('test').style.color='red';";
+    [webView stringByEvaluatingJavaScriptFromString:jsStr];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
