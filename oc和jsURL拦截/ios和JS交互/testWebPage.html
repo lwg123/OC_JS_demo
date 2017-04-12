@@ -15,9 +15,16 @@
             </style>
             
             <script type="text/javascript">
-                function changecolor() {
-                    document.getElementById('test').style.color = 'yellow'
+                function changecolor(content) {
+                    asyncAlert(content)
                 }
+            
+            function asyncAlert(content) {
+                setTimeout(function(){
+                           alert(content);
+                           },1);
+            }
+
             </script>
             
             

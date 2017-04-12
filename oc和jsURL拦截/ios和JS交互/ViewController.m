@@ -66,7 +66,7 @@
     // 3.判断该字符串中是否包含特殊字段
     NSString *checkStr = @"http://www.testwebpage/?";
     if ([urlStr rangeOfString:checkStr].location == NSNotFound) {
-        return YES;
+        return YES; // 加载其他页面
     }
     
     // 4.将特殊字段截取出来,分割字符串得到参数数据
@@ -74,8 +74,10 @@
     NSLog(@"%@",linkStr);
     
     NSArray *params = [linkStr componentsSeparatedByString:@"&&"];
+    
     //取出第一个参数：与h5协商好的方法名 printInfo:
     NSString *funcName = [params[0] componentsSeparatedByString:@"="][1];
+    
     //取出第二个参数：信息字符串 18513239626
     NSString *info = [params[1] componentsSeparatedByString:@"="][1];
     NSMutableDictionary *dicParam = [NSMutableDictionary dictionary];
@@ -84,16 +86,30 @@
     //5. 调起iOS原生方法
     SEL selector = NSSelectorFromString(funcName);
     
+
+    
+    // 消息转发
+    // 创建签名
     NSMethodSignature *methodSig = [_native methodSignatureForSelector:selector];
+     // 通过签名初始化
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
     invocation.selector = selector;
     invocation.target = _native;
+    // 有参数
     int i = 0;
     if (dicParam) {
         [invocation setArgument:&dicParam atIndex:i + 2];
     }
     [invocation invoke];
+    
+    // 有返回值
+    void *ret;
+    [invocation getReturnValue:&ret];
+    NSString *resultString = (__bridge NSString *)ret;
+    NSString * js = [NSString stringWithFormat:@"changecolor('%@')", resultString];
+    [webView stringByEvaluatingJavaScriptFromString:js];
 
+    
     
 //    if ([self respondsToSelector:selector]) {
 //        
@@ -110,24 +126,24 @@
 }
 
 // 本地调用
-- (void)printInfo:(NSObject *)obj {
-    _info = [NSString stringWithFormat:@"%@",obj];
-    
-    NSLog(@"打印JS传递的info:%@",_info);
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确定要拨打电话？\n%@",_info] preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-        
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击取消");
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-}
+//- (void)printInfo:(NSObject *)obj {
+//    _info = [NSString stringWithFormat:@"%@",obj];
+//    
+//    NSLog(@"打印JS传递的info:%@",_info);
+//    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确定要拨打电话？\n%@",_info] preferredStyle:UIAlertControllerStyleAlert];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//    
+//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+//        
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"点击取消");
+//    }]];
+//    
+//    [self presentViewController:alertController animated:YES completion:nil];
+//    
+//}
 
 
 

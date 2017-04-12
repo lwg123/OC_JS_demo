@@ -10,6 +10,8 @@
 
 @interface CHNative : NSObject
 
-- (void)printInfo:(NSObject *)obj;
+//- (void)printInfo:(NSObject *)obj;
+
+- (NSString *)printInfo:(NSObject *)obj;
 
 @end

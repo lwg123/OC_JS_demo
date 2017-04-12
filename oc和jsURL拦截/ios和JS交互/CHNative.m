@@ -11,23 +11,33 @@
 
 @implementation CHNative
 
-- (void)printInfo:(NSObject *)obj {
-    NSString *_info = [NSString stringWithFormat:@"%@",obj];
-    
-    NSLog(@"打印JS传递的info:%@",_info);
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确定要拨打电话？\n%@",_info] preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-        
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击取消");
-    }]];
 
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//- (void)printInfo:(NSObject *)obj {
+//    NSString *_info = [NSString stringWithFormat:@"%@",obj];
+//    
+//    NSLog(@"打印JS传递的info:%@",_info);
+//    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确定要拨打电话？\n%@",_info] preferredStyle:UIAlertControllerStyleAlert];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        
+//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+//        
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"点击取消");
+//    }]];
+//
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//    
+//}
+
+
+// 有返回值
+- (NSString *)printInfo:(NSObject *)obj{
+    NSString *num = [(NSDictionary *)obj objectForKey:@"info"];
+    NSString *info = [NSString stringWithFormat:@"我的手机号是：%@",num];
     
+    return info;
 }
 
 
